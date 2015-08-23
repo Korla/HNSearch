@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <title>HN url search</title>
+    <style>
+      body{
+        font-family: Verdana, Geneva, sans-serif;
+        margin: 5px;
+        background-color: rgb(246, 246, 239);
+      }
+      table{
+        border-collapse: collapse;
+      }
+      tr:first-of-type{
+        background-color: rgb(255, 102, 0);
+      }
+      tr:first-of-type > td {
+        color: black;
+      }
+      td{
+        padding: 4px;
+        white-space: nowrap;
+        color: rgb(130, 130, 130);
+      }
+      td:first-of-type{
+        color: black;
+        cursor: pointer;
+      }
+      td:first-of-type:hover{
+        text-decoration: underline;
+      }
+      #noHits{
+        white-space: nowrap;
+      }
+      .hidden{
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <object id="loading" type="image/svg+xml" data="loading.svg" class="logo">Loading...</object>
+    <div id="noHits" class="hidden">No hits for this url.</div>
+    <table class="hidden">
+      <tbody id="hits">
+        <tr>
+          <td></td>
+          <td>Author</td>
+          <td>Date</td>
+          <td># Comments</td>
+        </tr>
+      </tbody>
+    </table>
+    <script src="popup.js"></script>
+  </body>
+</html>
