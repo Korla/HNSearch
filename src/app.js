@@ -1,7 +1,18 @@
 let show = elem => elem.classList.remove('hidden');
 let hide = elem => elem.classList.add('hidden');let log = d => {console.log(d); return d;}
 let serialize = obj => '?'+Object.keys(obj).reduce((a,k)=>{a.push(k+'='+encodeURIComponent(obj[k]));return a},[]).join('&');
-let ajaxGet = url => fetch(url).then(d => d.json());
+let ajaxGet = url => {
+  return new Promise(resolve => {
+    var x = new XMLHttpRequest();
+    x.open('GET', url, true);
+    x.onreadystatechange = () => {
+        if (x.readyState == 4) {
+            resolve(JSON.parse(x.responseText));
+        }
+    };
+    x.send();
+  })
+}
 let toDateString = date => (new Date(date)).toUTCString();
 let flatten = (prev, curr) => prev.concat(curr);
 
@@ -103,8 +114,9 @@ let createLinkButtonTd = (url, title) => {
 }
 
 let getCurrentTabUrl = () =>
-  new Promise((resolve, reject) =>
-    chrome.tabs.query({ active: true, currentWindow: true }, ([{url}]) => resolve(url)));
+  new Promise((resolve, reject) => window.chrome ?
+    chrome.tabs.query({ active: true, currentWindow: true }, ([{url}]) => resolve(url)) :
+    resolve(window.location.href))
 
 let processProviderResults = ({name}, rows) => {
   if(!rows.length) {
@@ -128,49 +140,51 @@ let processProviderResults = ({name}, rows) => {
   }
 };
 
-let hn = {
-  name: 'HackerNews',
-  search: query =>
-    ajaxGet('https://hn.algolia.com/api/v1/search' + serialize({ hitsPerPage: 5, restrictSearchableAttributes: 'url', query }))
-      .then(({hits}) => hits.filter(hit => hit.title).map(hn.toRowData_)),
-  toRowData_: hit => ({
-    title: hit.title,
-    date: toDateString(hit.created_at),
-    url: 'https://news.ycombinator.com/item?id=' + hit.objectID,
-    author: hit.author,
-    nbrOfComments: hit.num_comments
-  })
+let providers = [
+  {
+    name: 'HackerNews',
+    search: query =>
+      ajaxGet('https://hn.algolia.com/api/v1/search' + serialize({hitsPerPage: 5, restrictSearchableAttributes: 'url', query}))
+        .then(({hits}) => hits.filter(hit => hit.title).map(hit => ({
+          title: hit.title,
+          date: toDateString(hit.created_at),
+          url: 'https://news.ycombinator.com/item?id=' + hit.objectID,
+          author: hit.author,
+          nbrOfComments: hit.num_comments
+        })))
+  },
+  {
+    name: 'Reddit',
+    search: q => ajaxGet(`https://www.reddit.com/r/programming/search.json` + serialize({sort: 'comment', q}))
+      .then(d => d && d.data ? d.data.children : [])
+      .then(hits => hits.map(d => d.data).map(hit => ({
+        title: hit.title,
+        date: toDateString(hit.created_utc * 1000),
+        url: 'https://reddit.com' + hit.permalink,
+        author: hit.author,
+        nbrOfComments: hit.num_comments
+      })))
+  }
+];
+
+let init = () => {
+  let styles = createStyles();
+  document.head.appendChild(styles);
+  let loadingIcon = createLoadingIcon();
+  document.body.appendChild(loadingIcon);
+
+  getCurrentTabUrl()
+    .then(url => Promise.all(providers.map(s => s.search(url))))
+    .then(results => {
+      hide(loadingIcon);
+      let table = createTable();
+      providers
+        .map((provider, i) => processProviderResults(provider, results[i], table))
+        .reduce(flatten, [])
+        .map(log)
+        .forEach(r => table.appendChild(r));
+      document.body.appendChild(table);
+    });
 }
 
-let reddit = {
-  name: 'Reddit',
-  search: q => ajaxGet(`https://www.reddit.com/r/programming/search.json` + serialize({sort: 'comment', q}))
-    .then(d => d && d.data ? d.data.children : [])
-    .then(hits => hits.map(d => d.data).map(reddit.toRowData_)),
-  toRowData_: hit => ({
-    title: hit.title,
-    date: toDateString(hit.created_utc * 1000),
-    url: 'https://reddit.com' + hit.permalink,
-    author: hit.author,
-    nbrOfComments: hit.num_comments
-  })
-}
-
-let providers = [hn, reddit];
-let styles = createStyles();
-document.head.appendChild(styles);
-let loadingIcon = createLoadingIcon();
-document.body.appendChild(loadingIcon);
-
-getCurrentTabUrl()
-  .then(url => Promise.all(providers.map(s => s.search(url))))
-  .then(results => {
-    hide(loadingIcon);
-    let table = createTable();
-    providers
-      .map((provider, i) => processProviderResults(provider, results[i], table))
-      .reduce(flatten, [])
-      .map(log)
-      .forEach(r => table.appendChild(r));
-    document.body.appendChild(table);
-  });
+init();
