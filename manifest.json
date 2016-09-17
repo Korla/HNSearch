@@ -3,7 +3,7 @@
 
   "name": "HN current page search",
   "description": "Fetches HN threads for the current visited page",
-  "version": "0.0.1",
+  "version": "0.0.2",
 
   "browser_action": {
     "default_icon": "icon.png",
