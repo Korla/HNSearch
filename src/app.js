@@ -77,6 +77,9 @@ let createStyles = () => n('style', `
   .commentThreadFinder div {
     display: block !important;
   }
+  .row {
+    min-width: 8em !important;
+  }
   .commentThreadFinder > *:hover .title {
     text-decoration: underline !important;
   }
@@ -145,7 +148,7 @@ let createLoadingIcon = container => {
 let createContainer = () => n('div.commentThreadFinder');
 
 let hide = () => undefined;
-let createRow = name => data => n('div.' + name, [
+let createRow = name => data => n('div.row.' + name, [
   n('div.title', data.title),
   n('div.content', [
     n('span.author', data.author),
@@ -236,6 +239,7 @@ if(window.chrome) {
     },
     finalize: function({response}) {
       processResponse(this.elements)(response.split('||||').map(JSON.parse));
+      setTimeout(hide, 10000);
     }
   }
 
