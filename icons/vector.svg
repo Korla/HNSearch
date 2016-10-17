@@ -1,25 +1,120 @@
-<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" >
-  <g>
-    <circle cx="18" cy="82" r="8" fill="rgb(255, 102, 0)"/>
-    <circle cx="36" cy="82" r="8" fill="rgb(130, 130, 130)"/>
-    <circle cx="54" cy="82" r="8" fill="rgb(95,153,207)"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 100 100"
+   id="svg3496"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="vector.svg">
+  <metadata
+     id="metadata3524">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs3522" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1427"
+     inkscape:window-height="840"
+     id="namedview3520"
+     showgrid="false"
+     inkscape:zoom="3.337544"
+     inkscape:cx="137.50693"
+     inkscape:cy="22.699028"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg3496" />
+  <g
+     id="g3498">
+    <circle
+       cx="25"
+       cy="88"
+       r="10"
+       fill="rgb(255, 102, 0)"
+       id="circle3500" />
+    <circle
+       cx="50"
+       cy="88"
+       r="10"
+       fill="rgb(130, 130, 130)"
+       id="circle3502" />
+    <circle
+       cx="75"
+       cy="88"
+       r="10"
+       fill="rgb(95,153,207)"
+       id="circle3504" />
   </g>
-  <g>
-    <path fill="rgb(130, 130, 130)"
-          d="M35,10
-             a 25 25 0 1 0 1 0
-             m0 5
-             a 20 20 0 1 1 -1 0
-
-             M 65,50
-             A 30 30 0 0 1 50 65
-             L 80,84
-             A 8 8 0 0 1 84 80
-             z"/>
-    <rect fill="rgb(130, 130, 130)" x="25" y="23" width="10" height="4" rx="2" ry="2"/>
-    <rect fill="rgb(130, 130, 130)" x="37" y="23" width="8" height="4" rx="2" ry="2"/>
-    <rect fill="rgb(130, 130, 130)" x="20" y="33" width="5" height="4" rx="2" ry="2"/>
-    <rect fill="rgb(130, 130, 130)" x="27" y="33" width="23" height="4" rx="2" ry="2"/>
-    <rect fill="rgb(130, 130, 130)" x="25" y="43" width="20" height="4" rx="2" ry="2"/>
-  </g>
+  <path
+     style="fill:#828282"
+     inkscape:connector-curvature="0"
+     id="path3508"
+     d="M 37.5,2 C 23.793089,2.2741931 12.864092,13.537414 13.001961,27.239363 13.139823,40.940637 24.292361,51.962796 38,51.962796 c 13.707639,0 24.860177,-11.022159 24.998039,-24.723433 C 63.135908,13.537414 52.206911,2.2741931 38.5,2 m 0,5 C 49.444812,7.2737058 58.135345,16.297464 57.99788,27.23933 57.860421,38.180666 48.946657,46.96845 38,46.96845 27.053343,46.96845 18.139579,38.180666 18.00212,27.23933 17.864655,16.297464 26.555188,7.2737058 37.5,7 m 23.762712,30.881356 c -3.00639,6.659906 -6.340094,9.99361 -13,13 L 78.5,76 c 0.801704,-1.775975 6.224025,-7.198296 8,-8 z"
+     sodipodi:nodetypes="csssccssscccccc" />
+  <rect
+     style="fill:#828282"
+     id="rect3510"
+     ry="2"
+     rx="2"
+     height="4"
+     width="10"
+     y="15"
+     x="27" />
+  <rect
+     style="fill:#828282"
+     id="rect3512"
+     ry="2"
+     rx="2"
+     height="4"
+     width="8"
+     y="15"
+     x="39" />
+  <rect
+     style="fill:#828282"
+     id="rect3514"
+     ry="2"
+     rx="2"
+     height="4"
+     width="5"
+     y="25"
+     x="22" />
+  <rect
+     style="fill:#828282"
+     id="rect3516"
+     ry="2"
+     rx="2"
+     height="4"
+     width="23"
+     y="25"
+     x="29" />
+  <rect
+     style="fill:#828282"
+     id="rect3518"
+     ry="2"
+     rx="2"
+     height="4"
+     width="20"
+     y="35"
+     x="27" />
 </svg>

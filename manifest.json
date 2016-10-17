@@ -6,7 +6,7 @@
   "version": "0.0.2",
 
   "browser_action": {
-    "default_icon": "icons/180x180.png",
+    "default_icon": "icons/icon-60@3x-transparent.png",
     "default_popup": "index.html",
     "default_title": "Search HN"
   },
